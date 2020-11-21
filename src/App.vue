@@ -1,28 +1,66 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <div class="row">
+      <div class="algo">
+        <form action="">
+          <input type="text" id="cantidad" name= cantidad><br><br>
+          <input type="submit" value="Submit">
+        </form>
+            <paginate ref="paginator" name = "arrayStrings" :list = "arrayStrings" :per = "5">
+                <p v-for="string in paginated('arrayStrings')" :key="string.id">{{string}}</p>
+            </paginate>
+               <paginate-links
+                for="arrayStrings"
+                :show-step-links="true"
+                :simple="{
+                    prev: 'Anterior',
+                    next: 'Siguiente'  
+                }"
+               ></paginate-links>
+      </div>
+    </div>
   </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  name: 'app',
+  data () {
+    return {
+      paginate:['arrayStrings'],
+      arrayStrings:[
+        "String1","String2","String3","String4","String5","String6","String7","String8","String9","String10",
+        "String11","String12","String13","String14","String15","String16","String17","String18","String19",
+        "String20",
+      ],
+    }
   }
 }
 </script>
-
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  body {
+  background-color: #457b9d;
+}
+  .paginate-links{
+    list-style: none;
+    text-align: center;
+}
+.paginate-links li {
+    display: inline;
+    background-color:#E43A48;
+    color:white;
+    padding:0.5rem;
+    margin-left:0.3rem;
+    margin-right: 0.3rem;
+    cursor:pointer;
+    border-radius: 3px;
+}
+.paginate-result{
+    text-align:center;
+    margin-bottom: 1rem;
+}
+
+.algo{
+    text-align: center;
 }
 </style>
+
