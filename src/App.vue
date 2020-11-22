@@ -4,22 +4,17 @@
       <div class="lista">
         <div>
           <table class="tabla">
-            <div>
             <thead>
               <tr>
                 <th>Emergencia</th>
                 <th>Emergencia ID</th>
               </tr>
             </thead>
-          </div>
             <tbody>
-                  <tr v-for="users in users" :key="users.id" v-on:click ="irAEmergencia">
-                    <div>
+                  <tr v-for="users in users" :key="users.id" v-on:click ="irAEmergencias"> 
                      <td>{{users.name}}</td>
                       <td>{{users.id}}</td>
-                      </div>
                   </tr>
-              
             </tbody>
           </table>
         </div>
@@ -62,9 +57,14 @@ export default {
     }
   },
   methods:{
-      irAEmergencias() {
+
+    get_Emergencias(){
+      this.getAllEmergencias;
+    },
+
+    irAEmergencias() {
       this.$router.push({ name: 'Tareas', params: { id: 1 } });
-    }
+    },
   },
   computed:{
   }
