@@ -9,14 +9,12 @@
                   <thead>
                     <tr>
                         <th>Tarea</th>
-                        <th>Tarea ID</th>
                         <th>Tarea estado</th>
                     </tr>
                   </thead>
                   <tbody>
                         <tr v-for="tareas in tareas" :key="tareas.id"> 
                             <td>{{tareas.nombre}}</td>
-                            <td>{{tareas.id}}</td>
                             <td v-if="tareas.estado == 0" style= "background-color: yellow;" ></td>
                             <td v-if="tareas.estado == 1" style= "background-color: orange;"></td>
                             <td v-if="tareas.estado == 2" style= "background-color: gray;"></td>
