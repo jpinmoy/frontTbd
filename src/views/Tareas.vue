@@ -15,10 +15,10 @@
                   <tbody>
                         <tr v-for="tareas in tareas" :key="tareas.id"> 
                             <td>{{tareas.nombre}}</td>
-                            <td v-if="tareas.estado == 0" style= "background-color: yellow;" ></td>
-                            <td v-if="tareas.estado == 1" style= "background-color: orange;"></td>
-                            <td v-if="tareas.estado == 2" style= "background-color: gray;"></td>
-                            <td v-if="tareas.estado == 3" style= "background-color: green;"></td>
+                            <td v-if="tareas.descrip == 'estado_0'" style= "background-color: yellow;" >{{tareas.descrip}}</td>
+                            <td v-if="tareas.descrip == 'estado_1'" style= "background-color: orange;">{{tareas.descrip}}</td>
+                            <td v-if="tareas.descrip == 'estado_2'" style= "background-color: gray;">{{tareas.descrip}}</td>
+                            <td v-if="tareas.descrip == 'estado_3'" style= "background-color: green;">{{tareas.descrip}}</td>
                         </tr>
                   </tbody>
                 </table>
@@ -36,6 +36,7 @@ export default{
         return{
             idEmergencia: this.$route.params.id,
             tareas: [],
+            emergencias: []
         }
     },
     created(){
@@ -46,7 +47,15 @@ export default{
       })
       .catch(e=>{
         console.log("Error :" +e);
-      })
+      });
+    axios
+        .get("http://localhost:8080/emergencia/activas/")
+        .then(result => {
+            this.emergencias = result.data;
+        })
+        .catch(e=>{
+            console.log("Error :"+e);
+        })
   }
 }
 </script>

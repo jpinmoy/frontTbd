@@ -32,12 +32,12 @@ export default {
   },
   created(){
     axios
-      .get("http://localhost:8080/emergencia/getAllActivas")
+      .get("http://localhost:8080/emergencia/getAll")
       .then(result => {
         this.emergencias= result.data;
       })
-      .catch(e=>{
-        console.log("Error :" +e);
+      .catch( e => {
+        console.log("Error :" + e);
       })
   },
   methods:{
