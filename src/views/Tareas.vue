@@ -36,13 +36,13 @@ export default{
     name: 'tareas',
     data(){
         return{
-            idEmergencia: this.$route.params.id,
+            prueba: this.$route.params.id,
             tareas: [],
         }
     },
     created(){
     axios
-      .get("http://localhost:8080/emergencia/"+ this.isEmergencia)
+      .get("http://localhost:8080/emergencia/"+ this.prueba)
       .then(result => {
         this.tareas= result.data;
       })

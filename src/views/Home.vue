@@ -32,7 +32,7 @@ export default {
   },
   created(){
     axios
-      .get("http://localhost:8080/emergencia/getAll")
+      .get("http://localhost:8080/emergencia/getAllActivas")
       .then(result => {
         this.emergencias= result.data;
       })
