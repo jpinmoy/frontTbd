@@ -1,8 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="lista">
-        <div>
+        <div class="container" id="cuadroG">
           <table class="tabla">
             <thead>
               <tr>
@@ -11,58 +10,31 @@
               </tr>
             </thead>
             <tbody>
-                  <tr v-for="users in users" :key="users.id"> 
-                    <td>{{users.nombre}}</td>
-                    <td><button v-on:click= "tareas(users.id)">{{users.id}}</button></td>
+                  <tr v-for="emergencias in emergencias" :key="emergencias.id"> 
+                    <td>{{emergencias.nombre}}</td>
+                    <td><button v-on:click= "tareas(emergencias.id)">{{emergencias.id}}</button></td>
                   </tr>
             </tbody>
           </table>
         </div>
-      </div>
     </div>
   </div>
 </template>
 <script>
 import axios from 'axios';
 
-
 export default {
   name: 'app',
   data () {
     return {
-      paginate:['users'],
-      users: [{
-                  "id": 1,
-                  "name": "Leanne Graham",
-                  "email": "Sincere@april.biz"
-              },
-              {
-                  "id": 2,
-                  "name": "Ervin Howell",
-                  "email": "Shanna@melissa.tv"
-              },
-              {
-                  "id": 3,
-                  "name": "Clementine Bauch",
-                  "email": "Nathan@yesenia.net"
-              },
-              {
-                  "id": 4,
-                  "name": "Patricia Lebsack",
-                  "email": "Julianne.OConner@kory.org"
-              },
-              {
-                  "id": 5,
-                  "name": "Chelsey Dietrich",
-                  "email": "Lucio_Hettinger@annie.ca"
-              }],
+      emergencias: [],
     }
   },
   created(){
     axios
       .get("http://localhost:8080/emergencia/getAll")
       .then(result => {
-        this.users= result.data;
+        this.emergencias= result.data;
       })
       .catch(e=>{
         console.log("Error :" +e);
@@ -118,5 +90,13 @@ export default {
       margin-right: 0.3rem;
       background-color: #45899d;
   }
+  #cuadroG{
+        background: #f1faee;
+        border-radius: 6px;
+        padding: 40px;
+        width: 80%;
+        margin: 50px auto;
+        box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.1);
+    }
 
 </style>
