@@ -23,48 +23,30 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
   name: 'app',
   data () {
     return {
       paginate:['users'],
-      users: [{
-                  "id": 1,
-                  "name": "Leanne Graham",
-                  "email": "Sincere@april.biz"
-              },
-              {
-                  "id": 2,
-                  "name": "Ervin Howell",
-                  "email": "Shanna@melissa.tv"
-              },
-              {
-                  "id": 3,
-                  "name": "Clementine Bauch",
-                  "email": "Nathan@yesenia.net"
-              },
-              {
-                  "id": 4,
-                  "name": "Patricia Lebsack",
-                  "email": "Julianne.OConner@kory.org"
-              },
-              {
-                  "id": 5,
-                  "name": "Chelsey Dietrich",
-                  "email": "Lucio_Hettinger@annie.ca"
-              }]
+      users: []
         ,
     }
   },
+  created(){
+    axios
+      .get("http://localhost:8080/emergencia/getAll")
+      .then(result => {
+        this.users= result.data;
+      })
+      .catch(e=>{
+        console.log("Error :" +e);
+      })
+  },
   methods:{
 
-    get_Emergencias(){
-      this.getAllEmergencias;
-    },
-
-    irAEmergencias() {
-      this.$router.push({ name: 'Tareas', params: { id: 1 } });
-    },
+    
   },
   computed:{
   }
